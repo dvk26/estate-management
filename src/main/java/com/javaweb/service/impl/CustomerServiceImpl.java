@@ -95,8 +95,11 @@ public class CustomerServiceImpl implements CustomerService {
             customerConverter.convertToCustomerEntity(foundCustomerEntity,customerDTO);
             customerRepository.save(foundCustomerEntity);
         }
-        CustomerEntity customerEntity=customerConverter.convertCustomerEntity(customerDTO);
-        customerRepository.save(customerEntity);
+        else {
+            CustomerEntity customerEntity=customerConverter.convertCustomerEntity(customerDTO);
+            customerRepository.save(customerEntity);
+        }
+
 
     }
 
