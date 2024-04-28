@@ -264,11 +264,12 @@
         data['isActive']=1;
 
         //call API
-        if(data['name']!=''&&data['customerPhone']!='') {
+        if(data['fullName']!=''&&data['phone']!='') {
             addOrUpdateCustomer(data);
         }
         else {
-            window.location.href="/admin/customer-edit-" + data['id'] +"?requiredphoneandname";
+            if(data['id']!='')  window.location.href="/admin/customer-edit-" + data['id'] +"?requiredphoneandname";
+            else window.location.href="/admin/customer-edit";
         }
     });
 
