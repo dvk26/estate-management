@@ -22,8 +22,9 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
     @PersistenceContext
     private EntityManager em;
     @Override
-    public List<CustomerEntity> findAll(CustomerSearchRequest customerSearchRequest) {
-        StringBuilder sql= new StringBuilder("select c.* from customer c");
+    public List<CustomerEntity> findActiveAll(CustomerSearchRequest customerSearchRequest) {
+        StringBuilder sql= new StringBuilder("select c.* from customer c ");
+
         sql.append(joinQuery(customerSearchRequest));
         sql.append(basicQuery(customerSearchRequest));
         sql.append(specialQuery(customerSearchRequest));
@@ -32,7 +33,8 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
         return query.getResultList();
     }
     public String basicQuery(CustomerSearchRequest customerSearchRequest)  {
-        StringBuilder sb=new StringBuilder(" where 1 = 1 ");
+        StringBuilder sb=new StringBuilder(" where 1 = 1 and c.is_active = 1 ");
+
         try {
             Field[] fields = CustomerSearchRequest.class.getDeclaredFields();
             System.out.println(fields.length);
@@ -69,7 +71,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
         return "";
     }
     @Override
-    public List<CustomerEntity> findDevidedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable) {
+    public List<CustomerEntity> findActiveDevidedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable) {
         StringBuilder sql= new StringBuilder("select distinct c.* from customer c");
         sql.append(joinQuery(customerSearchRequest));
         sql.append(basicQuery(customerSearchRequest));
@@ -85,6 +87,8 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
 
     @Override
     public int countTotalItems(CustomerSearchRequest customerSearchRequest) {
-        return findAll(customerSearchRequest).size();
+        return findActiveAll(customerSearchRequest).size();
     }
+
+
 }

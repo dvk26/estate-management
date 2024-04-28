@@ -15,15 +15,16 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface CustomerService {
-    public List<CustomerSearchResponse> findDividedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable);
-    public int countTotalItems(CustomerSearchRequest customerSearchRequest);
+    public List<CustomerSearchResponse> findActiveDividedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable);
+    public int countTotalActiveItems(CustomerSearchRequest customerSearchRequest);
 
     public ResponseDTO listStaffs(Long customerId);
 
     public void updateAssignmentCustomer(AssignmentCustomerDTO assignmentCustomerDTO);
 
     public void addOrUpdateCustomer(CustomerDTO customerDTO);
-    public void deleteCustomers(List<Long> ids);
+
     public CustomerDTO findDTObyId(Long id);
     public void addOrUpdateTransaction(TransactionDTO transactionDTO);
+    public void virtualDeleteCustomers(List<Long> ids);
 }

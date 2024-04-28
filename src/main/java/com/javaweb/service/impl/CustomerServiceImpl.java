@@ -44,8 +44,8 @@ public class CustomerServiceImpl implements CustomerService {
     private TransactionConverter transactionConverter;
 
     @Override
-    public List<CustomerSearchResponse> findDividedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable) {
-        List<CustomerEntity> customerList=customerRepository.findDevidedAll(customerSearchRequest,pageable);
+    public List<CustomerSearchResponse> findActiveDividedAll(CustomerSearchRequest customerSearchRequest, Pageable pageable) {
+        List<CustomerEntity> customerList=customerRepository.findActiveDevidedAll(customerSearchRequest,pageable);
         List<CustomerSearchResponse> result= new ArrayList<>();
         for(CustomerEntity item: customerList){
             result.add(customerConverter.convertBuildingSearchResponse(item));
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public int countTotalItems(CustomerSearchRequest customerSearchRequest) {
+    public int countTotalActiveItems(CustomerSearchRequest customerSearchRequest) {
         return customerRepository.countTotalItems(customerSearchRequest);
     }
 
@@ -90,18 +90,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void addOrUpdateCustomer(CustomerDTO customerDTO) {
-        CustomerEntity customerEntity=customerConverter.convertToCustomerEntity(customerDTO);
-        if(customerEntity.getStatus()!=null) customerEntity.setStatus("CHUA_DANG_KI");
+        if(customerDTO.getId()!=null){
+            CustomerEntity foundCustomerEntity=customerRepository.findById(customerDTO.getId()).get();
+            customerConverter.convertToCustomerEntity(foundCustomerEntity,customerDTO);
+            customerRepository.save(foundCustomerEntity);
+        }
+        CustomerEntity customerEntity=customerConverter.convertCustomerEntity(customerDTO);
         customerRepository.save(customerEntity);
-    }
-
-    @Override
-    @Transactional
-    public void deleteCustomers(List<Long> ids) {
-        transactionRepository.deleteByCustomerIdIn(ids);
-        customerRepository.deleteByIdIn(ids);
 
     }
+
+
 
     @Override
     public CustomerDTO findDTObyId(Long id) {
@@ -123,5 +122,13 @@ public class CustomerServiceImpl implements CustomerService {
         transactionEntity.setCustomer(customerEntity);
         transactionRepository.save(transactionEntity);
 
+    }
+
+    @Override
+    @Transactional
+    public void virtualDeleteCustomers(List<Long> ids) {
+        List<CustomerEntity> customerEntities= customerRepository.findAllById(ids);
+        for(int i=0;i<ids.size();i++) customerEntities.get(i).setIsActive(0);
+        customerRepository.saveAll(customerEntities);
     }
 }

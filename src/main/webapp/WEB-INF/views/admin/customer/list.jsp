@@ -41,7 +41,7 @@
             <div class="page-content">
                 <div class="page-header">
                     <h1>
-                        Danh sách tòa nhà
+                        Danh sách khách hàng
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
                             overview &amp; stats

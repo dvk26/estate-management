@@ -57,9 +57,9 @@ public class CustomerController {
             customerSearchRequest.setStaffId(staffId);
         }
 
-        List<CustomerSearchResponse> responseList= customerService.findDividedAll(customerSearchRequest,PageRequest.of(customerSearchRequest.getPage() - 1, customerSearchRequest.getMaxPageItems()));
+        List<CustomerSearchResponse> responseList= customerService.findActiveDividedAll(customerSearchRequest,PageRequest.of(customerSearchRequest.getPage() - 1, customerSearchRequest.getMaxPageItems()));
         customerSearchRequest.setListResult(responseList);
-        customerSearchRequest.setTotalItems(customerService.countTotalItems(customerSearchRequest));
+        customerSearchRequest.setTotalItems(customerService.countTotalActiveItems(customerSearchRequest));
         mav.addObject(SystemConstant.MODEL,customerSearchRequest);
 
         mav.addObject("modelSearch",customerSearchRequest);

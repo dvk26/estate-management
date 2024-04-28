@@ -27,5 +27,6 @@ public interface BuildingService {
 
     public void saveThumbnail(BuildingDTO buildingDTO,BuildingEntity buildingEntity);
 
+
 }
 

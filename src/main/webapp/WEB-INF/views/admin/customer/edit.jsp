@@ -143,6 +143,8 @@
                                 <tr>
                                     <th>Ngày tạo</th>
                                     <th>Người tạo</th>
+                                    <th>Ngày sửa</th>
+                                    <th>Người sửa</th>
                                     <th>Chi tiết giao dịch</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -150,6 +152,8 @@
                                 <c:forEach var="transaction" items="${CSKHTransactions}">
                                     <tbody>
                                     <tr>
+                                        <td>${transaction.createdDate}</td>
+                                        <td>${transaction.createdBy}</td>
                                         <td>${transaction.modifiedDate}</td>
                                         <td>${transaction.modifiedBy}</td>
                                         <td>${transaction.note}</td>
@@ -177,6 +181,8 @@
                                 <tr>
                                     <th>Ngày tạo</th>
                                     <th>Người tạo</th>
+                                    <th>Ngày sửa</th>
+                                    <th>Người sửa</th>
                                     <th>Chi tiết giao dịch</th>
                                     <th>Thao tác</th>
                                 </tr>
@@ -184,6 +190,8 @@
                                 <c:forEach var="transaction" items="${DDXTransactions}">
                                     <tbody>
                                     <tr>
+                                        <td>${transaction.createdDate}</td>
+                                        <td>${transaction.createdBy}</td>
                                         <td>${transaction.modifiedDate}</td>
                                         <td>${transaction.modifiedBy}</td>
                                         <td>${transaction.note}</td>
@@ -253,6 +261,7 @@
         $.each(formData,function(i,v){
             data[v.name]=v.value;
         })
+        data['isActive']=1;
 
         //call API
         if(data['name']!=''&&data['customerPhone']!='') {
@@ -296,6 +305,7 @@
         data['code']=$('#code').val();
         data['customerId']=$('#customerId').val();
         data['id']=$('#id').val();
+
         addOrUpdateTransaction(data);
 
     })

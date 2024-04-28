@@ -3,6 +3,7 @@ package com.javaweb.service.impl;
 import com.javaweb.converter.BuildingConverter;
 import com.javaweb.converter.RentAreaConverter;
 import com.javaweb.entity.BuildingEntity;
+import com.javaweb.entity.CustomerEntity;
 import com.javaweb.entity.RentAreaEntity;
 import com.javaweb.entity.UserEntity;
 import com.javaweb.model.dto.AssignmentBuildingDTO;
@@ -119,7 +120,10 @@ public class BuildingServiceImpl implements BuildingService {
         newBuildingEntity.setRentAreas(rentAreaEntities);
         if(buildingDTO.getId()!=null){
             BuildingEntity foundBuildingEntity=buildingRepository.findById(buildingDTO.getId()).get();
+            newBuildingEntity.setUsers(foundBuildingEntity.getUsers());
             newBuildingEntity.setImage(foundBuildingEntity.getImage());
+            newBuildingEntity.setCreatedBy(foundBuildingEntity.getCreatedBy());
+            newBuildingEntity.setCreatedDate(foundBuildingEntity.getCreatedDate());
         }
         saveThumbnail(buildingDTO,newBuildingEntity);
         buildingRepository.save(newBuildingEntity);
@@ -149,11 +153,5 @@ public class BuildingServiceImpl implements BuildingService {
             System.out.println(bytes.length);
             buildingEntity.setImage(path);
         }
-
-
-
     }
-
-
-
 }

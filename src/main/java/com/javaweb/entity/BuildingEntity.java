@@ -86,7 +86,7 @@ public class BuildingEntity extends BaseEntity {
     @JoinTable(name="assignmentbuilding",
             joinColumns= @JoinColumn(name="buildingid", nullable=false),
             inverseJoinColumns=@JoinColumn(name="staffid",nullable=false))
-    List<UserEntity> users;
+    private List<UserEntity> users;
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }

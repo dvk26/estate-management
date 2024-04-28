@@ -33,7 +33,7 @@ public class CustomerEntity extends BaseEntity{
     @JoinTable(name="assignmentcustomer",
             joinColumns= @JoinColumn(name="customerid", nullable=false),
             inverseJoinColumns=@JoinColumn(name="staffid",nullable=false))
-    List<UserEntity> users;
+    private List<UserEntity> users;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     private List<TransactionEntity> transactions;

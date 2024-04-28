@@ -38,7 +38,7 @@ public class CustomerAPI {
     }
     @DeleteMapping("/{ids}")
     public ResponseEntity deleteCustomers(@PathVariable List<Long> ids){
-        customerService.deleteCustomers(ids);
+        customerService.virtualDeleteCustomers(ids);
         System.out.println("da xoa"+ids);
         return ResponseEntity.ok("ok");
     }

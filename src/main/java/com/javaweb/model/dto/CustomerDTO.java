@@ -9,6 +9,8 @@ public class CustomerDTO extends AbstractDTO{
     private String demand;
     private String status;
     private String companyName;
+    private Integer isActive;
+
 
     public String getCompanyName() {
         return companyName;
@@ -66,4 +68,11 @@ public class CustomerDTO extends AbstractDTO{
         this.status = status;
     }
 
+    public Integer getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Integer isActive) {
+        this.isActive = isActive;
+    }
 }

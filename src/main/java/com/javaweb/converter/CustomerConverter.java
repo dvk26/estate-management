@@ -2,6 +2,7 @@ package com.javaweb.converter;
 
 import com.javaweb.entity.BuildingEntity;
 import com.javaweb.entity.CustomerEntity;
+import com.javaweb.enums.CustomerStatus;
 import com.javaweb.enums.District;
 import com.javaweb.model.dto.CustomerDTO;
 import com.javaweb.model.response.BuildingSearchResponse;
@@ -19,16 +20,26 @@ public class CustomerConverter {
 
     public CustomerSearchResponse convertBuildingSearchResponse(CustomerEntity customerEntity) {
         CustomerSearchResponse customer=modelMapper.map(customerEntity,CustomerSearchResponse.class);
+        customer.setStatus(CustomerStatus.type().get(customerEntity.getStatus()));
         return customer;
     }
 
-    public CustomerEntity convertToCustomerEntity(CustomerDTO customerDTO){
-        CustomerEntity customer=modelMapper.map(customerDTO,CustomerEntity.class);
-        return customer;
+    public void convertToCustomerEntity(CustomerEntity customerEntity,CustomerDTO customerDTO){
+        customerEntity.setPhone(customerDTO.getPhone());
+        customerEntity.setStatus(customerDTO.getStatus());
+        customerEntity.setFullName(customerDTO.getFullName());
+        customerEntity.setEmail(customerDTO.getEmail());
+        customerEntity.setDemand(customerDTO.getDemand());
+        if(customerEntity.getStatus()==null) customerEntity.setStatus("CHUA_XU_LI");
     }
 
     public CustomerDTO convertToCustomerDTO(CustomerEntity customerEntity){
         CustomerDTO customerDTO=modelMapper.map(customerEntity,CustomerDTO.class);
         return customerDTO;
+    }
+
+    public CustomerEntity convertCustomerEntity(CustomerDTO customerDTO){
+        CustomerEntity customerEntity=modelMapper.map(customerDTO,CustomerEntity.class);
+        return customerEntity;
     }
 }
