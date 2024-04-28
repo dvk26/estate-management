@@ -12,7 +12,7 @@
 <%@include file="/common/taglib.jsp" %>
 <html>
 <head>
-    <title>Danh sách tòa nhà</title>
+    <title>Danh sách khách hàng</title>
 </head>
 <body>
 <div class="main-content" id="main-container">

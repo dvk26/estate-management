@@ -112,7 +112,7 @@
                 <li class="">
                     <a href='/admin/customer-list'>
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Danh sách khaách hàng
+                        Danh sách khách hàng
                     </a>
                     <b class="arrow"></b>
                 </li>
