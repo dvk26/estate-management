@@ -40,6 +40,8 @@ public class CustomerConverter {
 
     public CustomerEntity convertCustomerEntity(CustomerDTO customerDTO){
         CustomerEntity customerEntity=modelMapper.map(customerDTO,CustomerEntity.class);
+        if(customerEntity.getStatus()==null) customerEntity.setStatus("CHUA_XU_LI");
+        customerEntity.setIsActive(1);
         return customerEntity;
     }
 }

@@ -323,7 +323,7 @@
             },
             error:function(respond){
                 console.log("Error");
-                window.location.href="/admin/customer-edit-"+$('#customerId').val()+"?messsage=success";
+                window.location.href="/admin/customer-edit-"+$('#customerId').val()+"?messsage=error";
             }
         })
     }

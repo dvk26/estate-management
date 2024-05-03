@@ -129,7 +129,7 @@
                         </div>
                         <input type="text" id="phone" name="phone" class="form-control mt-3" placeholder="Số điện thoại">
                         <input type="text" id="demand" name="demand" class="form-control mt-3" placeholder="Nội dung">
-                        <button class="btn btn-primary px-4 mt-3" id="submitBtn">
+                        <button type="button" class="btn btn-primary px-4 mt-3" id="submitBtn">
                             Gửi liên hệ
                         </button>
                     </form>
@@ -250,7 +250,7 @@
             addOrUpdateCustomer(object);
         }
         else{
-            window.location.href="/web/contact?fullNameandphonerequired";
+            window.location.href="/lien-he?fullNameandphonerequired";
         }
         // Bạn có thể thực hiện các xử lý khác với đối tượng object ở đây
     });
@@ -264,11 +264,11 @@
             dataType:'JSON',
             success: function(respond){
                 console.log("Success");
-                window.location.href="/web/contact?messsage=success";
+                window.location.href="/lien-he?messsage=success";
             },
             error:function(respond){
                 console.log("Error");
-                window.location.href="/web/contact?messsage=success";
+                window.location.href="/lien-he?messsage=success";
             }
         })
     }
