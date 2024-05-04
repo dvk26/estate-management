@@ -20,7 +20,7 @@ public class CustomerConverter {
 
     public CustomerSearchResponse convertBuildingSearchResponse(CustomerEntity customerEntity) {
         CustomerSearchResponse customer=modelMapper.map(customerEntity,CustomerSearchResponse.class);
-        customer.setStatus(CustomerStatus.type().get(customerEntity.getStatus()));
+        if (customerEntity.getStatus()!=null) customer.setStatus(CustomerStatus.type().get(customerEntity.getStatus()));
         return customer;
     }
 

@@ -269,7 +269,7 @@
         }
         else {
             if(data['id']!='')  window.location.href="/admin/customer-edit-" + data['id'] +"?requiredphoneandname";
-            else window.location.href="/admin/customer-edit";
+            else window.location.href="/admin/customer-edit?requiredphoneandname";
         }
     });
 

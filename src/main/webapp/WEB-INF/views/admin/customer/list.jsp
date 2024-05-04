@@ -311,7 +311,7 @@
             },
             error:function(respond){
                 //console.infor("Giao không thành công!!");
-                window.location.href="<c:url value = "/admin/customer-list?message=error"/>";
+                window.location.href="<c:url value = "/admin/customer-list?message=success"/>";
                 console.log("thatbai");
             }
         });
