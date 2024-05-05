@@ -12,7 +12,12 @@ public class TransactionConverter {
     @Autowired
     private ModelMapper modelMapper;
     public  TransactionDTO convertToDTO(TransactionEntity transactionEntity){
-        return modelMapper.map(transactionEntity,TransactionDTO.class);
+        TransactionDTO transactionDTO=modelMapper.map(transactionEntity,TransactionDTO.class);
+        if(transactionEntity.getCreatedDate().equals(transactionEntity.getModifiedDate())) {
+            transactionDTO.setModifiedDate(null);
+            transactionDTO.setModifiedBy(null);
+        }
+        return transactionDTO;
     }
     public  TransactionEntity convertToEntity(TransactionDTO transactionDTO){
         return modelMapper.map(transactionDTO,TransactionEntity.class);
