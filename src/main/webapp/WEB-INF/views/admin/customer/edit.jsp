@@ -161,8 +161,7 @@
                                             <div class="hidden-sm hidden-xs btn-group">
                                                 <button class="btn btn-xs btn-info" data-toggle="tooltip" title="sửa thông tin giao dịch"
                                                      onclick="updateTransaction(${transaction.id},'${transaction.note}')">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120">
-                                                    </i>
+                                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
 
                                             </div>

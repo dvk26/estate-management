@@ -30,6 +30,7 @@ public class CustomerConverter {
         customerEntity.setFullName(customerDTO.getFullName());
         customerEntity.setEmail(customerDTO.getEmail());
         customerEntity.setDemand(customerDTO.getDemand());
+        customerEntity.setCompanyName(customerDTO.getCompanyName());
         if(customerEntity.getStatus()==null) customerEntity.setStatus("CHUA_XU_LI");
     }
 
